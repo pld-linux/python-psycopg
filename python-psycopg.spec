@@ -34,8 +34,8 @@ DBAPI-2.0 and being thread safe at level 2.
 
 %description -l pl
 psycopg jest przeznaczonym dla Pythona interfejsem do bazy danych
-PostgreSQL (tak jak pygresql i popy). Zosta³ zakodowany od pocz±tku
-z za³o¿eniem ¿e ma byæ bardzo ma³y, szybki i stabilny. G³ówna zalet±
+PostgreSQL (tak jak pygresql i popy). Zosta³ zakodowany od pocz±tku z
+za³o¿eniem ¿e ma byæ bardzo ma³y, szybki i stabilny. G³ówna zalet±
 psycopg jest, ¿e w jest pe³ni zgodny z standardem DBAPI-2.0 i jest
 'thread safe' na poziomie 2.
 
@@ -73,7 +73,7 @@ install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_datadir}/Zope-%{zope_subname}}
 
 install psycopgmodule.so $RPM_BUILD_ROOT%{py_sitedir}
 
-cp -ar %{zope_subname}/* $RPM_BUILD_ROOT%{_datadir}/Zope-%{zope_subname}
+cp -a %{zope_subname}/* $RPM_BUILD_ROOT%{_datadir}/Zope-%{zope_subname}
 %py_comp $RPM_BUILD_ROOT%{_datadir}/Zope-%{zope_subname}
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/Zope-%{zope_subname}
 rm -f $RPM_BUILD_ROOT%{_datadir}/Zope-%{zope_subname}/*.py
@@ -89,7 +89,7 @@ fi
 
 %postun -n Zope-%{zope_subname}
 if [ "$1" = "0" ]; then
-	/usr/sbin/installzopeproduct -d %{zope_subname} 
+	/usr/sbin/installzopeproduct -d %{zope_subname}
 	if [ -f /var/lock/subsys/zope ]; then
 		/etc/rc.d/init.d/zope restart >&2
 	fi
